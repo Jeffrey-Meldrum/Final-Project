@@ -1,0 +1,15 @@
+C:\Users\agent\Desktop\programing\C#\Final Project\obj\Debug\net7.0\Pokemonrandomizer.csproj.AssemblyReference.cache
+C:\Users\agent\Desktop\programing\C#\Final Project\obj\Debug\net7.0\Pokemonrandomizer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\agent\Desktop\programing\C#\Final Project\obj\Debug\net7.0\Pokemonrandomizer.AssemblyInfoInputs.cache
+C:\Users\agent\Desktop\programing\C#\Final Project\obj\Debug\net7.0\Pokemonrandomizer.AssemblyInfo.cs
+C:\Users\agent\Desktop\programing\C#\Final Project\obj\Debug\net7.0\Pokemonrandomizer.csproj.CoreCompileInputs.cache
+C:\Users\agent\Desktop\programing\C#\Final Project\bin\Debug\net7.0\Pokemonrandomizer.exe
+C:\Users\agent\Desktop\programing\C#\Final Project\bin\Debug\net7.0\Pokemonrandomizer.deps.json
+C:\Users\agent\Desktop\programing\C#\Final Project\bin\Debug\net7.0\Pokemonrandomizer.runtimeconfig.json
+C:\Users\agent\Desktop\programing\C#\Final Project\bin\Debug\net7.0\Pokemonrandomizer.dll
+C:\Users\agent\Desktop\programing\C#\Final Project\bin\Debug\net7.0\Pokemonrandomizer.pdb
+C:\Users\agent\Desktop\programing\C#\Final Project\obj\Debug\net7.0\Pokemonrandomizer.dll
+C:\Users\agent\Desktop\programing\C#\Final Project\obj\Debug\net7.0\refint\Pokemonrandomizer.dll
+C:\Users\agent\Desktop\programing\C#\Final Project\obj\Debug\net7.0\Pokemonrandomizer.pdb
+C:\Users\agent\Desktop\programing\C#\Final Project\obj\Debug\net7.0\Pokemonrandomizer.genruntimeconfig.cache
+C:\Users\agent\Desktop\programing\C#\Final Project\obj\Debug\net7.0\ref\Pokemonrandomizer.dll

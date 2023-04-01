@@ -1,7 +1,7 @@
 /*
 Author: Jeffrey Meldrum
 
-Date:03/23/2023
+Date: 03/23/2023
 
 Description: 
 Responsibilities: 
@@ -17,14 +17,14 @@ Behaviors:
 using System;
 using System.Collections.Generic;
 
-public class JMPokemoneselector
+public class JMPokemonSelectorHabitat
 {
-    public JMPokemoneselector()
+    public void JMPokemonSelector()
     {
 
     }
 
-    public List<List<string>> JMChosenPokemon(List<List<List<string>>> JMPokemonList, string JMChosenHabitat)
+    protected virtual List<List<string>> JMSelectedPokemon(List<List<List<string>>> JMPokemonList, string JMChosenParameter)
     {
         // Looks through the entire list of pokemon and saves each one that fits the habitat
         List<List<List<string>>> JMQualifiedPokemon = new List<List<List<string>>>();
@@ -35,7 +35,7 @@ public class JMPokemoneselector
             foreach(string JMPokemonHabitat in JMPokemon[3])
             {
                 // if it meets the habitat specification it saves it to a list
-                if (JMChosenHabitat == JMPokemonHabitat)
+                if (JMChosenParameter == JMPokemonHabitat)
                 {
                     JMQualifiedPokemon.Add(JMPokemon);
                 }

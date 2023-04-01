@@ -1,10 +1,9 @@
 /*
-Author: 
-  Jeffrey Meldrum
+Author: Jeffrey Meldrum
 
 Date:03/23/2023
 
-Description: 
+Description: the menu class focuses on giving the user and option to do a randomized or custom pokemon based off a habitat or level
 Responsibilities: 
 
 
@@ -28,19 +27,28 @@ public class JMMenu
     public void JMmainMenuSelector()
     {
         Console.WriteLine("Menu");
-        Console.WriteLine("(1)  Create Randomized Pokemon");
-        Console.WriteLine("(2)  Create Curated Pokemon");
-        Console.WriteLine("(3)  Quit");
+        Console.WriteLine("(1)  Create randomized pokemon by habitat");
+        Console.WriteLine("(2)  Create custom pokemon by habitat");
+        Console.WriteLine("(3)  Create randomized pokemon by name");
+        Console.WriteLine("(4)  Create custom pokemon by name");
+        Console.WriteLine("(5)  Quit");
     }
 
     // numerical selection of the main menu
     public string JMmainSelection()
     {
         Console.WriteLine("Please enter the numerical of your choice.");
-        return Console.ReadLine();
+        string JMMenuSelection = Console.ReadLine();
+        // makes sure a proper numerical is input
+        while (JMMenuSelection != "1" && JMMenuSelection != "2" && JMMenuSelection != "3" && JMMenuSelection != "4" && JMMenuSelection != "5")
+        {
+          Console.WriteLine("Please input a proper numerical.");
+          JMMenuSelection = Console.ReadLine();
+        }
+        return JMMenuSelection;
     }
 
-    public List<string> JMhabitatLevelSelction()
+    public List<string> JMhabitatLevelSelection()
     {
         List<string> JMSelections = new List<string>();
         List <string> JMHabitats = new List<string>();
@@ -68,20 +76,20 @@ public class JMMenu
         string JMHabitatSelection = Console.ReadLine();
 
         // checks to make sure it is an actual selection
-        bool JMValidSelection = false;
-        while (JMValidSelection != false)
+        bool JMValidSelection = true;
+        while (JMValidSelection)
         {
             // checks their slection against the list of selections
             foreach (string JMHabitat in JMHabitats)
             {
                 if (JMHabitatSelection == JMHabitat)
                 {
-                    JMValidSelection = true;
+                    JMValidSelection = false;
                 }
             }
 
             // if still false will ask for them to imput a slection again
-            if (JMValidSelection == false)
+            if (JMValidSelection)
                 {
                     Console.WriteLine("Please enter a valid selection");
                     JMHabitatSelection = Console.ReadLine();
@@ -95,8 +103,8 @@ public class JMMenu
         string JMLevelSelection = Console.ReadLine();
 
         // checks to make sure it is a valid input
-        JMValidSelection = false;
-        while (JMValidSelection != false)
+        JMValidSelection = true;
+        while (JMValidSelection)
         {
             int i = 1;
             int JMLevelSelectionInt = Int32.Parse(JMLevelSelection);
@@ -104,13 +112,13 @@ public class JMMenu
             {
                 if (i == JMLevelSelectionInt)
                 {
-                    JMValidSelection = true;
+                    JMValidSelection = false;
                 }
                 i++;
             }
 
             // if it is still false asks them to enter a valid input
-            if (JMValidSelection == false)
+            if (JMValidSelection)
             {
                 Console.WriteLine("Please enter a valid numerical between 1-100");
                 JMLevelSelection = Console.ReadLine();

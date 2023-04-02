@@ -48,6 +48,7 @@ public class JMMenu
         return JMMenuSelection;
     }
 
+
     public List<string> JMhabitatLevelSelection()
     {
         List<string> JMSelections = new List<string>();
@@ -104,6 +105,46 @@ public class JMMenu
 
         // checks to make sure it is a valid input
         JMValidSelection = true;
+        while (JMValidSelection)
+        {
+            int i = 1;
+            int JMLevelSelectionInt = Int32.Parse(JMLevelSelection);
+            while (i != 101)
+            {
+                if (i == JMLevelSelectionInt)
+                {
+                    JMValidSelection = false;
+                }
+                i++;
+            }
+
+            // if it is still false asks them to enter a valid input
+            if (JMValidSelection)
+            {
+                Console.WriteLine("Please enter a valid numerical between 1-100");
+                JMLevelSelection = Console.ReadLine();
+            }
+        }
+
+        // if the level slection is valid it is added to the list
+        JMSelections.Add(JMLevelSelection);
+        return JMSelections; 
+    }
+
+
+    public List<string> JMnameLevelSelection()
+    {
+        List<string> JMSelections = new List<string>();
+
+        Console.WriteLine("Please enter a specific pokemon name");
+        string JMnameSelection = Console.ReadLine();
+        JMSelections.Add(JMnameSelection);
+        
+        Console.WriteLine("Please enter a numerical in between 1-100 for the level");
+        string JMLevelSelection = Console.ReadLine();
+
+        // checks to make sure it is a valid input
+        bool JMValidSelection = true;
         while (JMValidSelection)
         {
             int i = 1;

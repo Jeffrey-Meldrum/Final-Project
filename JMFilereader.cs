@@ -1,6 +1,5 @@
 /*
-Author: 
-  Jeffrey Meldrum
+Author: Jeffrey Meldrum
 
 Date:03/23/2023
 
@@ -29,7 +28,7 @@ public class JMFileReader
     public List<string> JMPokemonLoader()
     {
         List<string> JMPokemonRawData = new List<string>();
-        string JMFileName = "pokedex_data_text.txt";
+        string JMFileName = "pokedex_data_txt.txt";
         // reads the file and saves it into an array
         string[] JMPokemonArray = System.IO.File.ReadAllLines(JMFileName);
 
@@ -60,16 +59,17 @@ public class JMFileReader
             {
                 // list of each individual part of pokemons name, abilities, evolutions, habitats, and move list
                 List<string> JMPokemonFormattedData = new List<string>();
-                JMPokemonPart.Trim( new Char[] { ' ', '[', ']' } );
+                char[] JMTrimCharacters = {'\t','"',' ', '[', ']','\''};
+                string JMPokemonFormattedPart = JMPokemonPart.Trim(JMTrimCharacters);
                 // splits each part into individual names, abilities, evolutions, habitats, and moves
-                string[] JMPokemonUnformattedParts = JMPokemonPart.Split(",");
+                string[] JMPokemonUnformattedParts = JMPokemonFormattedPart.Split(",");
                 
                 // trims the individual parts of ' and saves it to a list
                 foreach (string JMPokemonUnformattedPart in JMPokemonUnformattedParts)
                 {
-                    JMPokemonUnformattedPart.Trim( new Char[] { '\'' } );
+                    string JMPokemonTrimmedPart = JMPokemonUnformattedPart.Trim(JMTrimCharacters);
                     // adds the formtted data to that individual section(name, abilities, evolutions, habitats, and move list)
-                    JMPokemonFormattedData.Add(JMPokemonUnformattedPart);
+                    JMPokemonFormattedData.Add(JMPokemonTrimmedPart);
                 }
                 // saves a whole pokemon comprised of a list of lsit of strings that are it's individual parts
                 JMPokemonProcessedData.Add(JMPokemonFormattedData);

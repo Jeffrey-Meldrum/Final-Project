@@ -68,6 +68,11 @@ public class JMPokemonEvolution
                     JMFilteredEvolutions.Add(JMSplitEvolution);
                 }
             }
+            // passes stage 1 into the filtered list
+            else
+            {
+                JMFilteredEvolutions.Add(JMSplitEvolution);
+            }
         }
 
         // a loop to determine what stage the pokemon will be
@@ -110,7 +115,7 @@ public class JMPokemonEvolution
             }
         }
         Console.WriteLine($"The stage is {PokemonStage}");
-        Console.WriteLine($"The Pokemon is {JMFilteredEvolutions[0][0]}");
+        Console.WriteLine($"The Pokemon is {JMFilteredEvolutions[0][1]}");
 
         // finds all pokemon of the proper stage and adds them to a list
         List<List<string>> JMEvolutionChoicePool = new List<List<string>>();

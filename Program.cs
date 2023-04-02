@@ -67,7 +67,7 @@ class Program
             string JMSelectedName = jmEvolution.JMRandomEvolution(JMSelectedPokemonData[JMEvolutionsIndex], JMSelectedParameters[JMSelectedLevelIndex]);
             JMPokemonSelector jmPokemonSelectorFromEvolution = new JMPokemonSelector();
             JMSelectedPokemonData = jmPokemonSelectorFromEvolution.JMSelectedPokemon(JMFormattedReader, JMSelectedName);
-            Console.WriteLine($"{JMSelectedName}");
+            Console.WriteLine($"The Selected evolution is {JMSelectedName}");
             break;
 
             case "2":

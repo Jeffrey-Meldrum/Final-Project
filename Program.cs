@@ -68,6 +68,25 @@ class Program
             JMPokemonSelector jmPokemonSelectorFromEvolution = new JMPokemonSelector();
             JMSelectedPokemonData = jmPokemonSelectorFromEvolution.JMSelectedPokemon(JMFormattedReader, JMSelectedName);
             Console.WriteLine($"The Selected evolution is {JMSelectedName}");
+
+            //picks the moves for the pokemon
+            JMParentMoves jmPokemonMoves = new JMParentMoves();
+            List<string> jmPokemonFilteredMoves = jmPokemonMoves.JMRFilteredMoves(JMSelectedPokemonData[4], JMSelectedParameters[JMSelectedLevelIndex]);
+            List<string> jmChosenMoves = jmPokemonMoves.JMRandomMoves(jmPokemonFilteredMoves);
+            foreach(string JMChosenMove in jmChosenMoves)
+            {
+              Console.WriteLine($"{JMChosenMove}");
+            }
+
+            // picks the abilities for the pokemon
+            JMParentAbilities jmPokemonAbilities = new JMParentAbilities();
+            List<string> jmPokemonFilteredAbilities = jmPokemonAbilities.JMAbiltiesFilter(JMSelectedPokemonData[JMAbilitiesIndex], JMSelectedParameters[JMSelectedLevelIndex]);
+            List<string> jmChosenAbilites = jmPokemonAbilities.JMRandomAbilties(jmPokemonFilteredAbilities, JMSelectedParameters[JMSelectedLevelIndex]);
+            foreach(string jmChosenAbility in jmChosenAbilites)
+            {
+              Console.WriteLine($"{jmChosenAbility}");
+            }
+
             break;
 
             case "2":

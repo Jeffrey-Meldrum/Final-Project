@@ -48,9 +48,9 @@ public class JMPokemonSelector
         }
 
         // picks a random pokemon to be the chose one
-        int JMQualifiedListLength = JMQualifiedPokemon.Count();
+        int JMQualifiedListLength = JMQualifiedPokemon.Count()-1;
         Random JMRandomNumber = new Random();
-        int JMRandomPokemonNumber = JMRandomNumber.Next(0,JMQualifiedListLength-1);
+        int JMRandomPokemonNumber = JMRandomNumber.Next(0,JMQualifiedListLength);
 
 
         return JMQualifiedPokemon[JMRandomPokemonNumber];

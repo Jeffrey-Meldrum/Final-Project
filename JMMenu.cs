@@ -45,6 +45,7 @@ public class JMMenu
           Console.WriteLine("Please input a proper numerical.");
           JMMenuSelection = Console.ReadLine();
         }
+        Console.Clear();
         return JMMenuSelection;
     }
 
@@ -126,6 +127,7 @@ public class JMMenu
             }
         }
 
+        Console.Clear();
         // if the level slection is valid it is added to the list
         JMSelections.Add(JMLevelSelection);
         return JMSelections; 
@@ -166,6 +168,7 @@ public class JMMenu
             }
         }
 
+        Console.Clear();
         // if the level slection is valid it is added to the list
         JMSelections.Add(JMLevelSelection);
         return JMSelections; 

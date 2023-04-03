@@ -66,7 +66,7 @@ public class JMCustomAbilities : JMParentAbilities
             }
 
             // adds their choice to the custom ability list
-            JMChosenAbilities.Add(JMFilteredAbilities[Int32.Parse(JMPickedNumber)]);
+            JMChosenAbilities.Add(JMFilteredAbilities[Int32.Parse(JMPickedNumber)-1]);
         }
 
         // only allows two abilities to be picked
@@ -110,7 +110,7 @@ public class JMCustomAbilities : JMParentAbilities
                     else
                     {
                         JMPickedNumbers.Add(JMPickedNumber);
-                        JMChosenAbilities.Add(JMFilteredAbilities[Int32.Parse(JMPickedNumber)]);
+                        JMChosenAbilities.Add(JMFilteredAbilities[Int32.Parse(JMPickedNumber)-1]);
                     }
                     JMChosenAbilitiesListLength = JMChosenAbilities.Count();
                 }
@@ -158,7 +158,7 @@ public class JMCustomAbilities : JMParentAbilities
                         else
                         {
                             JMPickedNumbers.Add(JMPickedNumber);
-                            JMChosenAbilities.Add(JMFilteredAbilities[Int32.Parse(JMPickedNumber)]);
+                            JMChosenAbilities.Add(JMFilteredAbilities[Int32.Parse(JMPickedNumber)-1]);
                         }
                         JMChosenAbilitiesListLength = JMChosenAbilities.Count();
                     }
@@ -206,7 +206,7 @@ public class JMCustomAbilities : JMParentAbilities
                     else
                     {
                         JMPickedNumbers.Add(JMPickedNumber);
-                        JMChosenAbilities.Add(JMFilteredAbilities[Int32.Parse(JMPickedNumber)]);
+                        JMChosenAbilities.Add(JMFilteredAbilities[Int32.Parse(JMPickedNumber)-1]);
                     }
                     JMChosenAbilitiesListLength = JMChosenAbilities.Count();
                 }

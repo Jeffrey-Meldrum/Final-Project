@@ -68,7 +68,6 @@ public class JMParentAbilities
         List<string> JMRandomAbilities = new List<string>();
         int JMRandomAbilitiesListLength = JMRandomAbilities.Count();
         Random JMRandmoizer = new Random();
-        int i = 0;
         // Console.WriteLine($"{JMFilteredListLength}");
 
         // if pokemon is less then level 20 it will only have one ability

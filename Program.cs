@@ -67,25 +67,38 @@ class Program
             string JMSelectedName = jmEvolution.JMRandomEvolution(JMSelectedPokemonData[JMEvolutionsIndex], JMSelectedParameters[JMSelectedLevelIndex]);
             JMPokemonSelector jmPokemonSelectorFromEvolution = new JMPokemonSelector();
             JMSelectedPokemonData = jmPokemonSelectorFromEvolution.JMSelectedPokemon(JMFormattedReader, JMSelectedName);
-            Console.WriteLine($"The Selected evolution is {JMSelectedName}");
+            Console.Clear();
+            Console.WriteLine($"\nPokemon: {JMSelectedName}");
+            Console.WriteLine($"Level: {JMSelectedParameters[JMSelectedLevelIndex]}\n");
 
             //picks the moves for the pokemon
             JMParentMoves jmPokemonMoves = new JMParentMoves();
             List<string> jmPokemonFilteredMoves = jmPokemonMoves.JMRFilteredMoves(JMSelectedPokemonData[4], JMSelectedParameters[JMSelectedLevelIndex]);
             List<string> jmChosenMoves = jmPokemonMoves.JMRandomMoves(jmPokemonFilteredMoves);
+            Console.WriteLine("Moves:");
             foreach(string JMChosenMove in jmChosenMoves)
             {
               Console.WriteLine($"{JMChosenMove}");
             }
+            Console.WriteLine("");
 
             // picks the abilities for the pokemon
             JMParentAbilities jmPokemonAbilities = new JMParentAbilities();
             List<string> jmPokemonFilteredAbilities = jmPokemonAbilities.JMAbiltiesFilter(JMSelectedPokemonData[JMAbilitiesIndex], JMSelectedParameters[JMSelectedLevelIndex]);
             List<string> jmChosenAbilites = jmPokemonAbilities.JMRandomAbilties(jmPokemonFilteredAbilities, JMSelectedParameters[JMSelectedLevelIndex]);
+            Console.WriteLine("Abilities:");
             foreach(string jmChosenAbility in jmChosenAbilites)
             {
               Console.WriteLine($"{jmChosenAbility}");
             }
+            Console.WriteLine("");
+
+            // picks a random nature
+            JMParentNatures jmPokemonNature = new JMParentNatures();
+            string JMChosenNature = jmPokemonNature.JMRandomNature();
+            Console.WriteLine($"Nature: {JMChosenNature}");
+
+            JMMenuSelection = "5";
 
             break;
 

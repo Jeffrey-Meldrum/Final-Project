@@ -18,9 +18,9 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class JMPokemonEvolution
+public class JMEvolution
 {
-    public JMPokemonEvolution()
+    public JMEvolution()
     {
 
     }
@@ -32,10 +32,10 @@ public class JMPokemonEvolution
         int JMChosenLevelInteger = Int32.Parse(JMChosenLevel);
         
         // makes a list of the evolutions in a more readable formate
-        foreach (string JMEvolution in JMPokemonEvolutions)
+        foreach (string JMPokemonEvolution in JMPokemonEvolutions)
         {
             List<string> JMEvolutionSplitList = new List<string>();
-            string[] JMEvolutionSplit = JMEvolution.Split("-");
+            string[] JMEvolutionSplit = JMPokemonEvolution.Split("-");
             // trims then adds stage
             string JMStageTrim = JMEvolutionSplit[0].Trim(JMTrimCharacters);
             JMEvolutionSplitList.Add(JMStageTrim);

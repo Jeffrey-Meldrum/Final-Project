@@ -20,6 +20,11 @@ using System.Collections.Generic;
 
 public class JMCustomAbilities : JMParentAbilities
 {
+    public JMCustomAbilities()
+    {
+
+    }
+    
     public override List<string> JMRandomAbilties(List<string> JMFilteredAbilities, string JMPokemonLevel)
     {
         int i = 1;

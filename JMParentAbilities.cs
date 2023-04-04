@@ -142,7 +142,7 @@ public class JMParentAbilities
         }
 
         // if pokemon is less then level 80 it only picks four abilities
-        else if(JMPokemonLevelInteger < 100)
+        else if(JMPokemonLevelInteger < 99)
         {
             while(JMRandomAbilitiesListLength < 4)
             {
@@ -171,16 +171,12 @@ public class JMParentAbilities
         }
 
         // if pokemon is level 100 it will have all available abilities
-        else if(JMPokemonLevelInteger == 100)
+        else
         {
-            while(JMRandomAbilitiesListLength < 5)
-            {
                 foreach(string JMAbility in JMFilteredAbilitites)
                 {
                     JMRandomAbilities.Add(JMAbility);
                 }
-                JMRandomAbilitiesListLength = JMRandomAbilities.Count();
-            }
         }
 
         return JMRandomAbilities;

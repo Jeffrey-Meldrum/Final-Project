@@ -20,6 +20,11 @@ using System.Collections.Generic;
 
 public class JMCustomMoves : JMParentMoves
 {
+    public JMCustomMoves()
+    {
+        
+    }
+
     public override List<string> JMRandomMoves(List<string> JMPokemonMovesFiltered)
     {
         Console.WriteLine("Here is the list of Moves you can select from");
@@ -30,13 +35,13 @@ public class JMCustomMoves : JMParentMoves
         // write out the moves the user can pick from
         foreach(string JMPokemoneMoveFiltered in JMPokemonMovesFiltered)
         {
-            Console.WriteLine($"({1}) {JMPokemoneMoveFiltered}");
+            Console.WriteLine($"({i}) {JMPokemoneMoveFiltered}");
             JMNumericalChoices.Add(i.ToString());
             i++;
         }
 
         // if there are less then or equal to 6 moves it will add them all
-        if(JMPokemonMovesFiltered.Count() <= 6)
+        if(JMPokemonMovesFiltered.Count() < 6)
         {
             Console.WriteLine("Since there are less then 6 avaialble moves all will be added");
             foreach(string JMPokemoneMoveFiltered in JMPokemonMovesFiltered)

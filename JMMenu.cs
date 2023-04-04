@@ -127,26 +127,43 @@ public class JMMenu
             }
         }
 
-        Console.Clear();
         // if the level slection is valid it is added to the list
         JMSelections.Add(JMLevelSelection);
         return JMSelections; 
     }
 
 
-    public List<string> JMnameLevelSelection()
+    public List<string> JMnameLevelSelection(List<List<List<string>>> JMPokemonFormattedData)
     {
         List<string> JMSelections = new List<string>();
-
+        bool JMValidSelection = true;
         Console.WriteLine("Please enter a specific pokemon name");
         string JMnameSelection = Console.ReadLine();
+
+        // checks to make sure the put in an existing pokemon
+        while(JMValidSelection)
+        {
+            foreach(List<List<string>> JMPokemon in JMPokemonFormattedData)
+            {
+                if(JMPokemon[0][0] == JMnameSelection)
+                {
+                    JMValidSelection = false;
+                }
+            }
+            if(JMValidSelection)
+            {
+                Console.WriteLine("Could not find your chosen pokemon, please reenter the name");
+                JMnameSelection = Console.ReadLine();
+            }
+        }
+
         JMSelections.Add(JMnameSelection);
         
         Console.WriteLine("Please enter a numerical in between 1-100 for the level");
         string JMLevelSelection = Console.ReadLine();
 
         // checks to make sure it is a valid input
-        bool JMValidSelection = true;
+        JMValidSelection = true;
         while (JMValidSelection)
         {
             int i = 1;
@@ -168,7 +185,6 @@ public class JMMenu
             }
         }
 
-        Console.Clear();
         // if the level slection is valid it is added to the list
         JMSelections.Add(JMLevelSelection);
         return JMSelections; 

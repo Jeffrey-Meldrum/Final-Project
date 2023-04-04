@@ -190,7 +190,8 @@ class Program
             // creates custom pokemon based on name
             JMSelectedParameters = jmMenu.JMnameLevelSelection(JMFormattedPokemonList);
             JMChosenPokemonData = jmPokemonSelector.JMSelectedPokemon(JMFormattedPokemonList, JMSelectedParameters[JMSelectedNameIndex]);
-            
+            JMChosenPokemonName = JMSelectedParameters[JMSelectedNameIndex];
+
             // randomizes what moves it has
             JMChosenPokemonFilteredMoves = jmRandomMoves.JMRFilteredMoves(JMChosenPokemonData[JMMovesIndex], JMSelectedParameters[JMSelectedLevelIndex]);
             JMChosenPokemonMoves = jmCustomMoves.JMRandomMoves(JMChosenPokemonFilteredMoves);

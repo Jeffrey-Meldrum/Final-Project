@@ -14,6 +14,16 @@ using System.Collections.Generic;
 
 public class JMCustomAbilities : JMParentAbilities
 {
+    private int _i;
+    private int _JMPokemonLevelInteger;
+    private List<string> _JMNumericalChoices = new List<string>();
+    private List<string> _JMChosenAbilities = new List<string>();
+    List<string> _JMPickedNumbers = new List<string>();
+    private string _JMPickedNumber;
+    private bool _JMValidChoice = true;
+    private int _JMChosenAbilitiesListLength = 0;
+
+
     public JMCustomAbilities()
     {
 
@@ -21,193 +31,186 @@ public class JMCustomAbilities : JMParentAbilities
     
     public override List<string> JMRandomAbilties(List<string> JMFilteredAbilities, string JMPokemonLevel)
     {
-        int i = 1;
-        int JMPokemonLevelInteger = Int32.Parse(JMPokemonLevel);
+        _i = 1;
+        _JMPokemonLevelInteger = Int32.Parse(JMPokemonLevel);
         Console.WriteLine("Abilities you may select from:");
-        List<string> JMNumericalChoices = new List<string>();
         foreach(string JMFilteredAbility in JMFilteredAbilities)
         {
-            Console.WriteLine($"({i}) {JMFilteredAbility}");
-            JMNumericalChoices.Add(i.ToString());
-            i++;
+            Console.WriteLine($"({_i}) {JMFilteredAbility}");
+            _JMNumericalChoices.Add(_i.ToString());
+            _i++;
         }
         
         // determines how many they can pick
         // only allows one ability to be picked
-        List<string> JMChosenAbilitiesNumbers = new List<string>();
-        List<string> JMChosenAbilities = new List<string>();
-        string JMPickedNumber = "";
-        List<string> JMPickedNumbers = new List<string>();
+        _JMPickedNumber = "";
 
-        if (JMPokemonLevelInteger < 20)
+        if (_JMPokemonLevelInteger < 20)
         {
             Console.WriteLine("You may pick 1 ability");
             Console.WriteLine("Enter your numerical choice:");
-            JMPickedNumber = Console.ReadLine();
+            _JMPickedNumber = Console.ReadLine();
             
             // makes sure they actually put in a number
-            bool JMValidChoice = true;
-            while(JMValidChoice)
+            while(_JMValidChoice)
             {
-                foreach(string JMNumericalChoice in JMNumericalChoices)
+                _JMValidChoice = true;
+                foreach(string JMNumericalChoice in _JMNumericalChoices)
                 {
-                    if(JMNumericalChoice == JMPickedNumber)
+                    if(JMNumericalChoice == _JMPickedNumber)
                     {
-                        JMValidChoice = false;
+                        _JMValidChoice = false;
                     }
                 }
                 
-                if(JMValidChoice)
+                if(_JMValidChoice)
                 {
                     Console.WriteLine("Please enter a valid numerical");
-                    JMPickedNumber = Console.ReadLine();
+                    _JMPickedNumber = Console.ReadLine();
                 }
             }
 
             // adds their choice to the custom ability list
-            JMChosenAbilities.Add(JMFilteredAbilities[Int32.Parse(JMPickedNumber)-1]);
+            _JMChosenAbilities.Add(JMFilteredAbilities[Int32.Parse(_JMPickedNumber)-1]);
         }
 
         // only allows two abilities to be picked
-        else if(JMPokemonLevelInteger < 40)
+        else if(_JMPokemonLevelInteger < 40)
         {
             Console.WriteLine("You may pick 2 abilities");
-            int JMChosenAbilitiesListLength = 0;
             // makes sure they get all the choices into the list
-            while(JMChosenAbilitiesListLength < 2)
+            while(_JMChosenAbilitiesListLength < 2)
             {
+                _JMValidChoice = true;
                 Console.WriteLine("Please enter your numerical choice");
-                JMPickedNumber = Console.ReadLine();
+                _JMPickedNumber = Console.ReadLine();
 
-                bool JMValidChoice = true;
-                while(JMValidChoice)
+                while(_JMValidChoice)
                 {
                     // makes sure its actually a number being chosen
-                    foreach(string JMNumericalChoice in JMNumericalChoices)
+                    foreach(string JMNumericalChoice in _JMNumericalChoices)
                     {
-                        if(JMNumericalChoice == JMPickedNumber)
+                        if(JMNumericalChoice == _JMPickedNumber)
                         {
-                            JMValidChoice = false;
+                            _JMValidChoice = false;
                         }
                     }
                     // makes sure the number isn't being picked again
-                    foreach(string JMPreviousPickedNumber in JMPickedNumbers)
+                    foreach(string JMPreviousPickedNumber in _JMPickedNumbers)
                     {
-                        if (JMPreviousPickedNumber == JMPickedNumber)
+                        if (JMPreviousPickedNumber == _JMPickedNumber)
                         {
-                            JMValidChoice = false;
+                            _JMValidChoice = false;
                         }
                     }
                     
                     // if JMValidChoice is still true then they will be asked to re-enter their choice
-                    if(JMValidChoice)
+                    if(_JMValidChoice)
                     {
                         Console.WriteLine("Please enter a valid numerical");
-                        JMPickedNumber = Console.ReadLine();
+                        _JMPickedNumber = Console.ReadLine();
                     }
                     // if it is false the ability will be added to the list
                     else
                     {
-                        JMPickedNumbers.Add(JMPickedNumber);
-                        JMChosenAbilities.Add(JMFilteredAbilities[Int32.Parse(JMPickedNumber)-1]);
+                        _JMPickedNumbers.Add(_JMPickedNumber);
+                        _JMChosenAbilities.Add(JMFilteredAbilities[Int32.Parse(_JMPickedNumber)-1]);
                     }
-                    JMChosenAbilitiesListLength = JMChosenAbilities.Count();
+                    _JMChosenAbilitiesListLength = _JMChosenAbilities.Count();
                 }
             }
         }
 
         // allows three abilities to be picked
-        else if(JMPokemonLevelInteger < 60)
+        else if(_JMPokemonLevelInteger < 60)
         {
             Console.WriteLine("You may pick 3 abilities");
-            int JMChosenAbilitiesListLength = 0;
             // makes sure they get all the choices into the list
-            while(JMChosenAbilitiesListLength < 3)
+            while(_JMChosenAbilitiesListLength < 3)
                 {
+                    _JMValidChoice = true;
                     Console.WriteLine("Please enter your numerical choice");
-                    JMPickedNumber = Console.ReadLine();
+                    _JMPickedNumber = Console.ReadLine();
 
-                    bool JMValidChoice = true;
-                    while(JMValidChoice)
+                    while(_JMValidChoice)
                     {
                         // makes sure its actually a number being chosen
-                        foreach(string JMNumericalChoice in JMNumericalChoices)
+                        foreach(string JMNumericalChoice in _JMNumericalChoices)
                         {
-                            if(JMNumericalChoice == JMPickedNumber)
+                            if(JMNumericalChoice == _JMPickedNumber)
                             {
-                                JMValidChoice = false;
+                                _JMValidChoice = false;
                             }
                         }
                         // makes sure the number isn't being picked again
-                        foreach(string JMPreviousPickedNumber in JMPickedNumbers)
+                        foreach(string JMPreviousPickedNumber in _JMPickedNumbers)
                         {
-                            if (JMPreviousPickedNumber == JMPickedNumber)
+                            if (JMPreviousPickedNumber == _JMPickedNumber)
                             {
-                                JMValidChoice = false;
+                                _JMValidChoice = false;
                             }
                         }
                         
                         // if JMValidChoice is still true then they will be asked to re-enter their choice
-                        if(JMValidChoice)
+                        if(_JMValidChoice)
                         {
                             Console.WriteLine("Please enter a valid numerical");
-                            JMPickedNumber = Console.ReadLine();
+                            _JMPickedNumber = Console.ReadLine();
                         }
                         // if it is false the ability will be added to the list
                         else
                         {
-                            JMPickedNumbers.Add(JMPickedNumber);
-                            JMChosenAbilities.Add(JMFilteredAbilities[Int32.Parse(JMPickedNumber)-1]);
+                            _JMPickedNumbers.Add(_JMPickedNumber);
+                            _JMChosenAbilities.Add(JMFilteredAbilities[Int32.Parse(_JMPickedNumber)-1]);
                         }
-                        JMChosenAbilitiesListLength = JMChosenAbilities.Count();
+                        _JMChosenAbilitiesListLength = _JMChosenAbilities.Count();
                     }
                 }
         }
 
         //  allows 4 abilities to be picked
-        else if(JMPokemonLevelInteger < 99)
+        else if(_JMPokemonLevelInteger < 80)
         {
             Console.WriteLine("You may pick 4 abilities");
-            int JMChosenAbilitiesListLength = 0;
             // makes sure they get all the choices into the list
-            while(JMChosenAbilitiesListLength < 4)
+            while(_JMChosenAbilitiesListLength < 4)
             {
+                _JMValidChoice = true;
                 Console.WriteLine("Please enter your numerical choice");
-                JMPickedNumber = Console.ReadLine();
+                _JMPickedNumber = Console.ReadLine();
 
-                bool JMValidChoice = true;
-                while(JMValidChoice)
+                while(_JMValidChoice)
                 {
                     // makes sure its actually a number being chosen
-                    foreach(string JMNumericalChoice in JMNumericalChoices)
+                    foreach(string JMNumericalChoice in _JMNumericalChoices)
                     {
-                        if(JMNumericalChoice == JMPickedNumber)
+                        if(JMNumericalChoice == _JMPickedNumber)
                         {
-                            JMValidChoice = false;
+                            _JMValidChoice = false;
                         }
                     }
                     // makes sure the number isn't being picked again
-                    foreach(string JMPreviousPickedNumber in JMPickedNumbers)
+                    foreach(string JMPreviousPickedNumber in _JMPickedNumbers)
                     {
-                        if (JMPreviousPickedNumber == JMPickedNumber)
+                        if (JMPreviousPickedNumber == _JMPickedNumber)
                         {
-                            JMValidChoice = false;
+                            _JMValidChoice = false;
                         }
                     }
                     
                     // if JMValidChoice is still true then they will be asked to re-enter their choice
-                    if(JMValidChoice)
+                    if(_JMValidChoice)
                     {
                         Console.WriteLine("Please enter a valid numerical");
-                        JMPickedNumber = Console.ReadLine();
+                        _JMPickedNumber = Console.ReadLine();
                     }
                     // if it is false the ability will be added to the list
                     else
                     {
-                        JMPickedNumbers.Add(JMPickedNumber);
-                        JMChosenAbilities.Add(JMFilteredAbilities[Int32.Parse(JMPickedNumber)-1]);
+                        _JMPickedNumbers.Add(_JMPickedNumber);
+                        _JMChosenAbilities.Add(JMFilteredAbilities[Int32.Parse(_JMPickedNumber)-1]);
                     }
-                    JMChosenAbilitiesListLength = JMChosenAbilities.Count();
+                    _JMChosenAbilitiesListLength = _JMChosenAbilities.Count();
                 }
             }
         }
@@ -218,10 +221,10 @@ public class JMCustomAbilities : JMParentAbilities
             Console.WriteLine("All abilities will be added");
             foreach(string JMFilteredAbility in JMFilteredAbilities)
             {
-                JMChosenAbilities.Add(JMFilteredAbility);
+                _JMChosenAbilities.Add(JMFilteredAbility);
             }
         }
 
-        return JMChosenAbilities;
+        return _JMChosenAbilities;
     }
 }

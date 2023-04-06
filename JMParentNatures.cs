@@ -14,6 +14,8 @@ using System.Collections.Generic;
 
 public class JMParentNatures
 {
+private Random _JMRandmoizer = new Random();
+private int _JMRandomNatureIndex;
 
     public JMParentNatures()
     {
@@ -25,9 +27,9 @@ public class JMParentNatures
         string[] JMNaturesList = {"cuddly","distracted","proud","decisive","patient","desperate","lonely","adamant","naughty","brave",
         "stark","bold","impish","lax","relaxed","curious","modest","mild","rash","quiet","dreamy","calm","gentle","careful","sassy","skittish",
         "timid","hasty","jolly","naive","composed","hardy","docile","bashful","quirky","serious"};
-        Random JMRandmoizer = new Random();
-        int JMRandomNatureIndex = JMRandmoizer.Next(0,35);
-        string JMChosenNature = JMNaturesList[JMRandomNatureIndex];
+        
+        _JMRandomNatureIndex = _JMRandmoizer.Next(0,35);
+        string JMChosenNature = JMNaturesList[_JMRandomNatureIndex];
         return JMChosenNature;
     }
 }

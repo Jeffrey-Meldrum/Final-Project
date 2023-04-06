@@ -15,6 +15,25 @@ using System.Collections.Generic;
 
 public class JMParentMoves
 {
+    private List<string> _JMPokemonMoveLevels;
+    private char[] _JMTrimCharacters = {' ', '\t'};
+    private List<string> _JMPokemonMoveLevelsFiltered = new List<string>();
+    private int _i;
+    private int _JMPokemonLevelInteger;
+    private int _JMMoveLevelInteger;
+    private List<string> _JMPokemonMovesFiltered = new List<string>();
+
+    private Random _JMRandmoizer = new Random();
+    private int _JMPokemonMoveListLength;
+    private List<string> _JMChosenMoves = new List<string>();
+    private List<int> _JMChosenMovesIndex = new List<int>();
+    private int _JMRandomFirstMoveIndex;
+    private int _JMLoopBreaker;
+    private bool _JMAddMoveLogic;
+    private int _JMRandomMoveIndex;
+
+
+
     public JMParentMoves()
     {
 
@@ -24,95 +43,89 @@ public class JMParentMoves
     public List<string> JMRFilteredMoves(List<string> JMPokemonMoves, string JMPokemonLevel)
     {
         // creates a reference list of the move levels
-        List<string> JMPokemonMoveLevels = new List<string>();
-        char[] JMTrimCharacters = {' ', '\t'};
+        _JMPokemonMoveLevels = new List<string>();
         foreach(string JMPokemonMove in JMPokemonMoves)
         {
             string[] JMMoveSplit = JMPokemonMove.Split(" ");
-            JMPokemonMoveLevels.Add(JMMoveSplit[0].Trim(JMTrimCharacters));
+            _JMPokemonMoveLevels.Add(JMMoveSplit[0].Trim(_JMTrimCharacters));
         }
 
         // filters out the moves that are to high level
-        List<string> JMPokemonMoveLevelsFiltered = new List<string>();
-        int JMPokemonLevelInteger = Int32.Parse(JMPokemonLevel);
-        foreach(string JMPokemonMoveLevel in JMPokemonMoveLevels)
+        _JMPokemonLevelInteger = Int32.Parse(JMPokemonLevel);
+        foreach(string JMPokemonMoveLevel in _JMPokemonMoveLevels)
         {
-            int JMMoveLevelInteger = Int32.Parse(JMPokemonMoveLevel);
-            if (JMMoveLevelInteger <= JMPokemonLevelInteger)
+            _JMMoveLevelInteger = Int32.Parse(JMPokemonMoveLevel);
+            if (_JMMoveLevelInteger <= _JMPokemonLevelInteger)
             {
-                JMPokemonMoveLevelsFiltered.Add(JMPokemonMoveLevel);
+                _JMPokemonMoveLevelsFiltered.Add(JMPokemonMoveLevel);
             }
         }
 
         // gets the filtered version of the actual move list
-        List<string> JMPokemonMovesFiltered = new List<string>();
-        int i = 0;
-        foreach (string JMMoveLevelFiltered in JMPokemonMoveLevelsFiltered)
+        _i = 0;
+        foreach (string JMMoveLevelFiltered in _JMPokemonMoveLevelsFiltered)
         {
-            JMPokemonMovesFiltered.Add(JMPokemonMoves[i]);
-            i++;
+            _JMPokemonMovesFiltered.Add(JMPokemonMoves[_i]);
+            _i++;
         }
 
         // returns the filtered moves
-        return JMPokemonMovesFiltered;
+        return _JMPokemonMovesFiltered;
     }
 
     public virtual List<string> JMRandomMoves(List<string> JMPokemonMovesFiltered)
     {
         // counts how long the list is, is it is longer then 6 it will randomize what moves to add otherwise they are all added.
-        int JMPokemonMoveListLength = JMPokemonMovesFiltered.Count();
-        List<string> JMChosenMoves = new List<string>();
-        if (JMPokemonMoveListLength < 6)
+        _JMPokemonMoveListLength = JMPokemonMovesFiltered.Count();
+        if (_JMPokemonMoveListLength < 6)
         {
             foreach (string JMPokemonMove in JMPokemonMovesFiltered)
             {
-                JMChosenMoves.Add(JMPokemonMove);
+                _JMChosenMoves.Add(JMPokemonMove);
             }
         }
         
         // if the lsit is longer then 6 it will randomize what moves will be added
         else
         {
-            Random JMRandmoizer = new Random();
             
             // adds the first index to a list so there is something in it at the start of the while loop
-            List<int> JMChosenMovesIndex = new List<int>();
-            int JMRandomFirstMoveIndex = JMRandmoizer.Next(0,JMPokemonMoveListLength-1);
-            JMChosenMovesIndex.Add(JMRandomFirstMoveIndex);
-            int JMLoopBreaker = JMChosenMovesIndex.Count();
+            _JMRandomFirstMoveIndex = _JMRandmoizer.Next(0,_JMPokemonMoveListLength-1);
+            _JMChosenMovesIndex.Add(_JMRandomFirstMoveIndex);
+            _JMLoopBreaker = _JMChosenMovesIndex.Count();
 
-            while (JMLoopBreaker < 6)
+            while (_JMLoopBreaker < 6)
             {
                 // checks to make sure the next random index isnt already in the list
-                bool JMAddMoveLogic = true;
-                int JMRandomMoveIndex = JMRandmoizer.Next(0,JMPokemonMoveListLength-1);
+                _JMAddMoveLogic = true;
+                _JMRandomMoveIndex = _JMRandmoizer.Next(0,_JMPokemonMoveListLength-1);
 
                 // Console.WriteLine($"{JMPokemonMovesFiltered[JMRandomMoveIndex]}");
 
-                foreach (int JMChosenMoveIndex in JMChosenMovesIndex)
+                foreach (int JMChosenMoveIndex in _JMChosenMovesIndex)
                 {
                     // if the move index matches it is set to false
-                    if (JMChosenMoveIndex == JMRandomMoveIndex)
+                    if (JMChosenMoveIndex == _JMRandomMoveIndex)
                     {
-                        JMAddMoveLogic = false;
+                        _JMAddMoveLogic = false;
                     }
                 }
 
                 // if JMAddMoveLogic stays true then it adds the random move index to the list
-                if (JMAddMoveLogic)
+                if (_JMAddMoveLogic)
                 {
-                    JMChosenMovesIndex.Add(JMRandomMoveIndex);
+                    _JMChosenMovesIndex.Add(_JMRandomMoveIndex);
                 }
-                JMLoopBreaker = JMChosenMovesIndex.Count();
+                _JMLoopBreaker = _JMChosenMovesIndex.Count();
             }
 
             // adds the moves based on the index values
-            foreach(int JMChosenMoveIndex in JMChosenMovesIndex)
+            foreach(int JMChosenMoveIndex in _JMChosenMovesIndex)
             {
-                JMChosenMoves.Add(JMPokemonMovesFiltered[JMChosenMoveIndex]);
+                _JMChosenMoves.Add(JMPokemonMovesFiltered[JMChosenMoveIndex]);
             }
         }
 
-        return JMChosenMoves;
+        return _JMChosenMoves;
     }
 }

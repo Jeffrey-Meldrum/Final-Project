@@ -15,6 +15,14 @@ using System.IO;
 
 public class JMFileReader
 {
+    private List<string> _JMPokemonRawData = new List<string>();
+    private string _JMFileName = "pokedex_data_txt.txt";
+
+     // list of all pokemon and their individual parts(name, abilities, evolutions, habitats, and move list)
+    private List<List<List<string>>> _JMPokemonProcessedDataList = new List<List<List<string>>>();
+    private char[] _JMTrimCharacters = {'\t','"',' ', '[', ']','\''};
+    private string _JMPokemonTrimmedPart;
+
     public JMFileReader()
     {
 
@@ -23,26 +31,22 @@ public class JMFileReader
     // reads through the file
     public List<string> JMPokemonLoader()
     {
-        List<string> JMPokemonRawData = new List<string>();
-        string JMFileName = "pokedex_data_txt.txt";
+        ;
         // reads the file and saves it into an array
-        string[] JMPokemonArray = System.IO.File.ReadAllLines(JMFileName);
+        string[] JMPokemonArray = System.IO.File.ReadAllLines(_JMFileName);
 
         // changes array into a list
         foreach(string JMPokemon in JMPokemonArray)
         {
-            JMPokemonRawData.Add(JMPokemon);
+            _JMPokemonRawData.Add(JMPokemon);
         }
 
-        return JMPokemonRawData;
+        return _JMPokemonRawData;
     }
 
     // formats the raw data into a useable state for the code
     public List<List<List<string>>> JMPokemonFormatter(List<string> JMPokemonRawData)
     {
-        // list of all pokemon and their individual parts(name, abilities, evolutions, habitats, and move list)
-        List<List<List<string>>> JMPokemonProcessedDataList = new List<List<List<string>>>();
-
         foreach (string JMPokemonRaw in JMPokemonRawData)
         {
             // list of each individual pokemons parts (name, abilities, evolutions, habitats, and move list)
@@ -55,25 +59,24 @@ public class JMFileReader
             {
                 // list of each individual part of pokemons name, abilities, evolutions, habitats, and move list
                 List<string> JMPokemonFormattedData = new List<string>();
-                char[] JMTrimCharacters = {'\t','"',' ', '[', ']','\''};
-                string JMPokemonFormattedPart = JMPokemonPart.Trim(JMTrimCharacters);
+                string JMPokemonFormattedPart = JMPokemonPart.Trim(_JMTrimCharacters);
                 // splits each part into individual names, abilities, evolutions, habitats, and moves
                 string[] JMPokemonUnformattedParts = JMPokemonFormattedPart.Split(",");
                 
                 // trims the individual parts of ' and saves it to a list
                 foreach (string JMPokemonUnformattedPart in JMPokemonUnformattedParts)
                 {
-                    string JMPokemonTrimmedPart = JMPokemonUnformattedPart.Trim(JMTrimCharacters);
+                    _JMPokemonTrimmedPart = JMPokemonUnformattedPart.Trim(_JMTrimCharacters);
                     // adds the formtted data to that individual section(name, abilities, evolutions, habitats, and move list)
-                    JMPokemonFormattedData.Add(JMPokemonTrimmedPart);
+                    JMPokemonFormattedData.Add(_JMPokemonTrimmedPart);
                 }
                 // saves a whole pokemon comprised of a list of lsit of strings that are it's individual parts
                 JMPokemonProcessedData.Add(JMPokemonFormattedData);
             }
             // saves all pokemon to a single master list
-            JMPokemonProcessedDataList.Add(JMPokemonProcessedData);
+            _JMPokemonProcessedDataList.Add(JMPokemonProcessedData);
         }
 
-        return JMPokemonProcessedDataList;
+        return _JMPokemonProcessedDataList;
     }
 }

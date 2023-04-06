@@ -15,6 +15,14 @@ using System.Collections.Generic;
 
 public class JMCustomNatures : JMParentNatures
 {
+    private List<string> _JMNumericalChoices = new List<string>();
+    private int _i;
+    private string[] _JMNaturesList = {"cuddly","distracted","proud","decisive","patient","desperate","lonely","adamant","naughty","brave",
+        "stark","bold","impish","lax","relaxed","curious","modest","mild","rash","quiet","dreamy","calm","gentle","careful","sassy","skittish",
+        "timid","hasty","jolly","naive","composed","hardy","docile","bashful","quirky","serious"};
+    private string _JMPickedNumber;
+    private bool _JMValidChoice;
+
     public JMCustomNatures()
     {
         
@@ -22,43 +30,39 @@ public class JMCustomNatures : JMParentNatures
 
     public override string JMRandomNature()
     {
-         string[] JMNaturesList = {"cuddly","distracted","proud","decisive","patient","desperate","lonely","adamant","naughty","brave",
-        "stark","bold","impish","lax","relaxed","curious","modest","mild","rash","quiet","dreamy","calm","gentle","careful","sassy","skittish",
-        "timid","hasty","jolly","naive","composed","hardy","docile","bashful","quirky","serious"};
-        List<string> JMNumericalChoices = new List<string>();
         
         // writes out the list of natures and adds their numbers to a list
         Console.WriteLine("Here are the natures you can pick from");
-        int i = 1;
-        foreach(string JMNature in JMNaturesList)
+        _i = 1;
+        foreach(string JMNature in _JMNaturesList)
         {
-            Console.WriteLine($"({i}) {JMNature}");
-            JMNumericalChoices.Add(i.ToString());
-            i++;
+            Console.WriteLine($"({_i}) {JMNature}");
+            _JMNumericalChoices.Add(_i.ToString());
+            _i++;
         }
         Console.WriteLine("Please enter the numerical of your choice");
-        string JMPickedNumber = Console.ReadLine();
+        _JMPickedNumber = Console.ReadLine();
         
         // checks to make sure it is a valid option
-        bool JMValidChoice = true;
-        while(JMValidChoice)
+        _JMValidChoice = true;
+        while(_JMValidChoice)
         {
-            foreach(string JMNumerical in JMNumericalChoices)
+            foreach(string JMNumerical in _JMNumericalChoices)
             {
-                if (JMNumerical == JMPickedNumber)
+                if (JMNumerical == _JMPickedNumber)
                 {
-                    JMValidChoice = false;
+                    _JMValidChoice = false;
                 }
             }
-            if(JMValidChoice)
+            if(_JMValidChoice)
             {
                 Console.WriteLine("Please enter a valid numerical between 1 and 36");
-                JMPickedNumber = Console.ReadLine();
+                _JMPickedNumber = Console.ReadLine();
             }
         }
 
         // if the while loop finishes it will return the nature
-        return JMNaturesList[Int32.Parse(JMPickedNumber)-1];
+        return _JMNaturesList[Int32.Parse(_JMPickedNumber)-1];
         
     }
 }

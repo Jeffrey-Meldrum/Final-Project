@@ -16,6 +16,22 @@ using System.Collections.Generic;
 
 public class JMEvolution
 {
+    private List<List<string>> _JMAllEvolutions = new List<List<string>>();
+    private char[] _JMTrimCharacters = {' ','\t'};
+    private int _JMChosenLevelInteger;
+    private string _JMStageTrim;
+    private List<List<string>> _JMFilteredEvolutions = new List<List<string>>();
+    private  string _JMEvolutionTrim;
+    private List<string> _JMEvolutionSplitList = new List<string>();
+    private string _JMLevelTrim;
+    private int _JMLevelInteger;
+    private string _PokemonStage;
+    private int _JMRandomChanceNumber;
+    private Random _JMRandomNumber = new Random();
+    private  List<List<string>> _JMEvolutionChoicePool = new List<List<string>>();
+    private string _JMChosenPokemonName;
+    private int _JMListLength;
+    
     public JMEvolution()
     {
 
@@ -23,90 +39,85 @@ public class JMEvolution
 
     public string JMRandomEvolution(List<string> JMPokemonEvolutions, string JMChosenLevel)
     {
-        List<List<string>> JMAllEvolutions = new List<List<string>>();
-        char[] JMTrimCharacters = {' ','\t'};
-        int JMChosenLevelInteger = Int32.Parse(JMChosenLevel);
+        _JMChosenLevelInteger = Int32.Parse(JMChosenLevel);
         
         // makes a list of the evolutions in a more readable formate
         foreach (string JMPokemonEvolution in JMPokemonEvolutions)
         {
-            List<string> JMEvolutionSplitList = new List<string>();
+            _JMEvolutionSplitList = new List<string>();
             string[] JMEvolutionSplit = JMPokemonEvolution.Split("-");
             // trims then adds stage
-            string JMStageTrim = JMEvolutionSplit[0].Trim(JMTrimCharacters);
-            JMEvolutionSplitList.Add(JMStageTrim);
+            _JMStageTrim = JMEvolutionSplit[0].Trim(_JMTrimCharacters);
+            _JMEvolutionSplitList.Add(_JMStageTrim);
             string[] JMNameAndLevelSplit = JMEvolutionSplit[1].Split("minimum");
             // trims then adds evolution
-            string JMEvolutionTrim = JMNameAndLevelSplit[0].Trim(JMTrimCharacters);
-            JMEvolutionSplitList.Add(JMEvolutionTrim);
+            _JMEvolutionTrim = JMNameAndLevelSplit[0].Trim(_JMTrimCharacters);
+            _JMEvolutionSplitList.Add(_JMEvolutionTrim);
             // trims then adds level if there is a level to add
             if (JMNameAndLevelSplit.Count() == 2)
             {
-                string JMLevelTrim = JMNameAndLevelSplit[1].Trim(JMTrimCharacters);
-                JMEvolutionSplitList.Add(JMLevelTrim);
+                _JMLevelTrim = JMNameAndLevelSplit[1].Trim(_JMTrimCharacters);
+                _JMEvolutionSplitList.Add(_JMLevelTrim);
             }
 
             // Console.WriteLine($"The Name is {JMEvolutionTrim}");
             // master list of evolutions
-            JMAllEvolutions.Add(JMEvolutionSplitList);
+            _JMAllEvolutions.Add(_JMEvolutionSplitList);
         }
 
         // removes evolutions from the list if they are to high
-        List<List<string>> JMFilteredEvolutions = new List<List<string>>();
-        foreach (List<string> JMSplitEvolution in JMAllEvolutions)
+        foreach (List<string> JMSplitEvolution in _JMAllEvolutions)
         {
             if (JMSplitEvolution.Count() == 3)
             {
-                int JMLevelInteger = Int32.Parse(JMSplitEvolution[2]);
+                _JMLevelInteger = Int32.Parse(JMSplitEvolution[2]);
                 // if the level of the stage is higher than the parameter it is deleted from the list
-                if (JMLevelInteger < JMChosenLevelInteger)
+                if (_JMLevelInteger < _JMChosenLevelInteger)
                 {
-                    JMFilteredEvolutions.Add(JMSplitEvolution);
+                    _JMFilteredEvolutions.Add(JMSplitEvolution);
                 }
             }
             // passes stage 1 into the filtered list
             else
             {
-                JMFilteredEvolutions.Add(JMSplitEvolution);
+                _JMFilteredEvolutions.Add(JMSplitEvolution);
             }
         }
 
         // a loop to determine what stage the pokemon will be
-        string PokemonStage = "1";
-        int JMRandomChanceNumber = 0;
-        foreach (List<string> JMSplitEvolution in JMFilteredEvolutions)
+        _PokemonStage = "1";
+        _JMRandomChanceNumber = 0;
+        foreach (List<string> JMSplitEvolution in _JMFilteredEvolutions)
         {
             // if selection can be stage 2 gives it a high chance of being stage 2
             if (JMSplitEvolution[0] == "2")
             {
-                Random JMRandomNumber = new Random();
-                JMRandomChanceNumber = JMRandomNumber.Next(0,100);
-                if (JMRandomChanceNumber >= 30)
+                _JMRandomChanceNumber = _JMRandomNumber.Next(0,100);
+                if (_JMRandomChanceNumber >= 30)
                 {
-                    PokemonStage = "2";
+                    _PokemonStage = "2";
                 }
                 else
                 {
-                    PokemonStage ="1";
+                    _PokemonStage ="1";
                 }
             }
 
             // if pokemon can be stage 3 it has a high chance of being a stage 3
             else if (JMSplitEvolution[0] == "3")
             {
-                Random JMRandomNumber = new Random();
-                JMRandomChanceNumber = JMRandomNumber.Next(0,100);
-                if (JMRandomChanceNumber > 10 && JMRandomChanceNumber < 30)
+                _JMRandomChanceNumber = _JMRandomNumber.Next(0,100);
+                if (_JMRandomChanceNumber > 10 && _JMRandomChanceNumber < 30)
                 {
-                    PokemonStage = "2";
+                    _PokemonStage = "2";
                 }
-                else if (JMRandomChanceNumber >= 30)
+                else if (_JMRandomChanceNumber >= 30)
                 {
-                    PokemonStage = "3";
+                    _PokemonStage = "3";
                 }
                 else
                 {
-                    PokemonStage ="1";
+                    _PokemonStage ="1";
                 }
             }
         }
@@ -114,36 +125,34 @@ public class JMEvolution
         // Console.WriteLine($"The Pokemon is {JMFilteredEvolutions[0][1]}");
 
         // finds all pokemon of the proper stage and adds them to a list
-        List<List<string>> JMEvolutionChoicePool = new List<List<string>>();
-        if (JMFilteredEvolutions.Count() > 1)
+        if (_JMFilteredEvolutions.Count() > 1)
         {
-            foreach (List<string> JMSplitEvolution in JMFilteredEvolutions)
+            foreach (List<string> JMSplitEvolution in _JMFilteredEvolutions)
             {
-                if (JMSplitEvolution[0] == PokemonStage)
+                if (JMSplitEvolution[0] == _PokemonStage)
                 {
-                    JMEvolutionChoicePool.Add(JMSplitEvolution);
+                    _JMEvolutionChoicePool.Add(JMSplitEvolution);
                 }
             }
         }
         else
         {
-            JMEvolutionChoicePool.Add(JMFilteredEvolutions[0]);
+            _JMEvolutionChoicePool.Add(_JMFilteredEvolutions[0]);
         }
         // Console.WriteLine($"{JMEvolutionChoicePool[0][0]}");
 
-        string JMChosenPokemonName = "";
-        if(JMEvolutionChoicePool.Count() > 1)
+        _JMChosenPokemonName = "";
+        if(_JMEvolutionChoicePool.Count() > 1)
         {
-        Random JMNewRandomNumber = new Random();
-        int JMListLength = JMEvolutionChoicePool.Count()-1;
-        JMRandomChanceNumber = JMNewRandomNumber.Next(0,JMListLength);
-        JMChosenPokemonName = JMEvolutionChoicePool[JMRandomChanceNumber][1];
+        _JMListLength = _JMEvolutionChoicePool.Count()-1;
+        _JMRandomChanceNumber = _JMRandomNumber.Next(0,_JMListLength);
+        _JMChosenPokemonName = _JMEvolutionChoicePool[_JMRandomChanceNumber][1];
         }
         else
         {
-            JMChosenPokemonName = JMEvolutionChoicePool[0][1];
+            _JMChosenPokemonName = _JMEvolutionChoicePool[0][1];
         }
 
-    return JMChosenPokemonName;
+    return _JMChosenPokemonName;
     }
 }

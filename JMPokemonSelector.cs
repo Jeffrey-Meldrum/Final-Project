@@ -15,6 +15,10 @@ using System.Collections.Generic;
 
 public class JMPokemonSelector
 {
+    private int _JMQualifiedListLength;
+    private Random _JMRandomNumber = new Random();
+    private int JMRandomPokemonNumber;
+
     public JMPokemonSelector()
     {
 
@@ -43,10 +47,8 @@ public class JMPokemonSelector
         }
 
         // picks a random pokemon to be the chose one
-        int JMQualifiedListLength = JMQualifiedPokemon.Count()-1;
-        Random JMRandomNumber = new Random();
-        int JMRandomPokemonNumber = JMRandomNumber.Next(0,JMQualifiedListLength);
-
+         _JMQualifiedListLength = JMQualifiedPokemon.Count()-1;
+        JMRandomPokemonNumber = _JMRandomNumber.Next(0,_JMQualifiedListLength);
 
         return JMQualifiedPokemon[JMRandomPokemonNumber];
     }

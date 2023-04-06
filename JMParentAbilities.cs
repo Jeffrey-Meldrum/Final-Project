@@ -3,14 +3,11 @@ Author: Jeffrey Meldrum
 
 Date: 03/23/2023
 
-Description: 
-Responsibilities: 
+Description: This classes job is to filter out what abilitie the pokemon can have at a given level then randomly selected a number of them
+based on that level.
+Responsibilities: Takes in the unfiltered abilities list from the pokemon data and what level it is. Then it filters out te ones that
+can be known at that level, then it sends those to be randomly picked and returns that as a list.
 
-
-Attributes:
-
-
-Behaviors:
 
 */
 

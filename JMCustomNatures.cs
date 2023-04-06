@@ -1,16 +1,11 @@
 /*
 Author: Jeffrey Meldrum
 
-Date: 03/23/2023
+Date: 04/05/2023
 
-Description: 
-Responsibilities: 
+Description: child of the parent natures class this provides the user with all 36 nature options for their own choosing
+Responsibilities: getsuser input on what nature they want an returns it as a string
 
-
-Attributes:
-
-
-Behaviors:
 
 */
 

@@ -4,13 +4,8 @@ Author: Jeffrey Meldrum
 Date:03/23/2023
 
 Description: the menu class focuses on giving the user and option to do a randomized or custom pokemon based off a habitat or level
-Responsibilities: 
-
-
-Attributes:
-
-
-Behaviors:
+Responsibilities: Give the user options of how they would like to proceed, return their input as a string, ask them what habita/name and
+level the would like then returns that as a short two part lsit to be used by the rest of the program.
 
 */
 

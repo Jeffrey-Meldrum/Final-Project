@@ -3,14 +3,10 @@ Author: Jeffrey Meldrum
 
 Date:03/23/2023
 
-Description: 
-Responsibilities: 
-
-
-Attributes:
-
-
-Behaviors:
+Description: This is the class the reads the tect document with all of the pokemon data contained inside. It is to read trhough the data,
+then make a list of each pokemons evolutions, moves, and abilities.
+Responsibilities: first reads the document and each individual line is a different pokemon then saves it as a list. Sends the list to another
+function to be formatted to be used by the rest of the program.
 
 */
 

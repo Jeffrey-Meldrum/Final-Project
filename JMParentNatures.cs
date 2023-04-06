@@ -3,14 +3,8 @@ Author: Jeffrey Meldrum
 
 Date: 03/23/2023
 
-Description: 
-Responsibilities: 
-
-
-Attributes:
-
-
-Behaviors:
+Description: this class is used to randomly pick a nature from the list of 36 natures
+Responsibilities: does require any input but will look through the list of natures and randomly select 1 and return it as a string
 
 */
 

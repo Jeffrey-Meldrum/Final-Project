@@ -2,16 +2,16 @@
 Authors: 
   Jeffrey Meldrum
 
-Date:
+Date: 04/04/2023
 
-Description:
-Responsibilities:
-
-
-Attributes:
+Description: being the main program this is where all the classes are sent to process and create randomized or custom pokemon
+Responsibilities: using the oother classes create a random or custom pokemon
 
 
-Behaviors:
+Attributes: 
+
+
+Behaviors: 
 
 */
 

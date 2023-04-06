@@ -3,14 +3,10 @@ Author: Jeffrey Meldrum
 
 Date: 03/23/2023
 
-Description: 
-Responsibilities: 
-
-
-Attributes:
-
-
-Behaviors:
+Description: This class is used with the habitat class. It determines wether or not the pokemon is the apporpriate evolution stage
+if it has multiple stages it takes into account what level the pokemon is and uses that to make a decision. The stages re weighted meaning
+if a pokemon is level 35 and evolves at 30 it is more likely to be that evolution. However, it has a small chance of not being evolved
+Responsibilities: take the evoltuion string from the pokemon data and the input level to determine what evolution the pokemon should be
 
 */
 

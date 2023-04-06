@@ -1,16 +1,10 @@
 /*
 Author: Jeffrey Meldrum
 
-Date: 03/23/2023
+Date: 04/04/2023
 
-Description: 
-Responsibilities: 
-
-
-Attributes:
-
-
-Behaviors:
+Description: A child class of parent abilities, this class allows the user to pick specific abilities limited by the level that was inputted
+Responsibilities: take the filtered ability list then give the user options of wich abilities to pick
 
 */
 

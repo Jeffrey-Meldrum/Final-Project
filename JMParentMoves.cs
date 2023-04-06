@@ -3,14 +3,9 @@ Author: Jeffrey Meldrum
 
 Date: 03/23/2023
 
-Description: 
-Responsibilities: 
-
-
-Attributes:
-
-
-Behaviors:
+Description: This class is used to chose what moves the pokemon will know and randomly picks 6 of them.
+Responsibilities: takes in the level the user input and the list of moves and filterse them based on the level. Then it send them to be
+randomized and afterwards will return them as a list for the program.
 
 */
 

@@ -3,14 +3,9 @@ Author: Jeffrey Meldrum
 
 Date: 03/23/2023
 
-Description: 
-Responsibilities: 
-
-
-Attributes:
-
-
-Behaviors:
+Description: This program is usd to look through the data extracted from the text document and find pokemon that mtach the users input
+Responsibilities: takes in the entire formatte pokemon list and the chosen paramters and finds the correct pokemon. Can find based off
+of name or habitat
 
 */
 

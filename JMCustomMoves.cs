@@ -1,16 +1,10 @@
 /*
 Author: Jeffrey Meldrum
 
-Date: 03/23/2023
+Date: 04/05/2023
 
-Description: 
-Responsibilities: 
-
-
-Attributes:
-
-
-Behaviors:
+Description: A child class of parent moves that allows the user to pick the pokemons moves
+Responsibilities: take the filtered move list and input level and give the user options of what moves they want
 
 */
 
